@@ -2,7 +2,9 @@ const exp=require('express')
 const app=exp();
 require('dotenv').config()
 const mongoClient=require('mongodb').MongoClient
+const cors = require('cors');
 
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(exp.json())
 
 // mount user API routes

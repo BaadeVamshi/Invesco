@@ -1,0 +1,37 @@
+/* Footer styles matching the navigation bar for consistency */
+.footer{
+  /* outer wrapper should not add spacing */
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 auto;
+}
+
+.footer-bar{
+  background: linear-gradient(90deg, #0d6efd 0%, #6610f2 100%);
+  color: #fff;
+  padding: 0.6rem 0; /* slightly taller than nav */
+  border-radius: 0;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.08);
+}
+
+.footer-inner{
+  color: #fff;
+}
+
+.footer-bar h5,
+.footer-bar p{
+  margin: 0.15rem 0;
+  color: rgba(255,255,255,0.95);
+}
+
+.footer p small, .footer small{
+  color: rgba(255,255,255,0.8);
+}
+
+/* make sure footer text remains readable on small screens */
+@media (max-width: 576px){
+  .footer-bar{
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+  }
+}

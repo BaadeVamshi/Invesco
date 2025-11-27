@@ -1,0 +1,38 @@
+/* Make home fill available space and center content */
+.home-root{
+  flex: 1 1 auto; /* fill available space in .content */
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+  margin: 0;
+  /* width: 100%; */
+}
+
+.home-center{
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-card{
+  background: rgba(255,255,255,0.92);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.home-card h1{
+  margin-bottom: 0.5rem;
+}
+
+.home-card p{
+  margin: 0.25rem 0;
+  color: #333;
+}
