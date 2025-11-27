@@ -40,7 +40,7 @@ function SignIn() {
       <div className="signin-container" style={{ backgroundColor: 'var(--container-bg-color)' }}>
         <form className="signin-form" onSubmit={handleSubmit(handleFormSubmit)} style={{ color: 'var(--text-color)' }}>
           <h2>Sign In</h2>
-          {errorOccurred && <p className="text-center" style={{ color: 'var(--error-color)' }}>{errMsg}</p>}
+          {errorOccurred && <p className="text-center" style={{ color: 'red' }}>{errMsg}</p>}
           <div className="form-group">
             <label htmlFor="username">Username</label>
             <input
