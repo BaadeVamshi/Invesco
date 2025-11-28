@@ -112,39 +112,23 @@ router.get('/reload', verifyToken, async (req, res) => {
 });
 
 router.get('/mdd/msft', async (req, res) => {
-  try {
-    // File path for the Excel sheet
-    const filePath = path.join(__dirname, "..", "data", "MSFT_Monthly - Illustration.xlsx");
+  console.log("Received a request to /mdd/msft");
+  console.log("Request Query:", req.query);
+  console.log("Request Params:", req.params);
+  console.log("Request Headers:", req.headers);
+  
+  res.status(200).json({ message: "Request details logged to the console." });
+});
 
-    // Reading Excel
-    const workbook = xlsx.readFile(filePath);
-    const sheet = workbook.Sheets["MSFT_Monthly"];  // Target sheet
-    const data = xlsx.utils.sheet_to_json(sheet);
-
-    // Extract closing prices (change column name if needed)
-    const prices = data.map(row => row["Close"]).filter(v => typeof v === "number");
-
-    if (!prices.length) {
-      return res.status(400).json({ error: "No valid price data found in Excel file" });
-    }
-
-    const mdd = calculateMDD(prices);
-    const mddPercentage = (mdd * 100).toFixed(2);
-
-    res.json({
-      stock: "MSFT",
-      maximumDrawdown: mdd,
-      mddPercentage: `${mddPercentage}%`
-    });
-
-  } catch (err) {
-    console.error("Error calculating MDD:", err);
-    res.status(500).json({ error: "Failed to calculate MDD" });
-  }
+router.get('/wacc', async (req, res) => {
+  console.log("Received a request to /wacc");
+  console.log("Request Query:", req.query);
+  console.log("Request Params:", req.params);
+  console.log("Request Headers:", req.headers);
+  
+  res.status(200).json({ message: "WACC request details logged to the console." });
 });
 
 
 
-
 module.exports = router
-
