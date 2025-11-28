@@ -2,8 +2,26 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const verifyToken = require('../middleware/verifyToken');
+const verifyToken = require('../middleware/verifyToken')
+const xlsx = require("xlsx");
+const path = require("path");
 
+function calculateMDD(prices) {
+  let peak = -Infinity;
+  let maxDrawdown = 0;
+
+  for (const price of prices) {
+    if (price > peak) {
+      peak = price;
+    }
+    const drawdown = (price - peak) / peak;
+    if (drawdown < maxDrawdown) {
+      maxDrawdown = drawdown;
+    }
+  }
+
+  return maxDrawdown;
+}
 // POST /signup
 // Body: { username, email, password }
 router.post('/signup', async (req, res) => {
@@ -75,8 +93,6 @@ router.post('/login', async (req, res) => {
 	}
 })
 
-// GET /reload
-// Protected Route: requires a valid token
 router.get('/reload', verifyToken, async (req, res) => {
     try {
         const usersCollection = req.app.get('userscollection');
@@ -95,4 +111,40 @@ router.get('/reload', verifyToken, async (req, res) => {
     }
 });
 
+router.get('/mdd/msft', async (req, res) => {
+  try {
+    // File path for the Excel sheet
+    const filePath = path.join(__dirname, "..", "data", "MSFT_Monthly - Illustration.xlsx");
+
+    // Reading Excel
+    const workbook = xlsx.readFile(filePath);
+    const sheet = workbook.Sheets["MSFT_Monthly"];  // Target sheet
+    const data = xlsx.utils.sheet_to_json(sheet);
+
+    // Extract closing prices (change column name if needed)
+    const prices = data.map(row => row["Close"]).filter(v => typeof v === "number");
+
+    if (!prices.length) {
+      return res.status(400).json({ error: "No valid price data found in Excel file" });
+    }
+
+    const mdd = calculateMDD(prices);
+    const mddPercentage = (mdd * 100).toFixed(2);
+
+    res.json({
+      stock: "MSFT",
+      maximumDrawdown: mdd,
+      mddPercentage: `${mddPercentage}%`
+    });
+
+  } catch (err) {
+    console.error("Error calculating MDD:", err);
+    res.status(500).json({ error: "Failed to calculate MDD" });
+  }
+});
+
+
+
+
 module.exports = router
+
