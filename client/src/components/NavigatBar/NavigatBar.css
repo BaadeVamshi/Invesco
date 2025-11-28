@@ -1,0 +1,39 @@
+/* Navigation bar styles - subtle, noticeable color */
+.navi{
+	background: linear-gradient(90deg, #004b8d 0%, #0062A8 100%);
+	color: #fff;
+	padding: 0.35rem 0;
+	border-radius: 0; /* remove rounded corners */
+	box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.navi .nav{
+	align-items: center;
+}
+
+.nav-link{
+	color: rgba(255,255,255,0.95);
+	font-weight: 600;
+	padding: 0.35rem 0.6rem;
+	border-radius: 4px;
+	transition: background .12s ease, color .12s ease, transform .06s ease, border-bottom .12s ease;
+	border-bottom: 2px solid transparent; /* Reserve space for the active underline */
+}
+
+.nav-link:hover{
+	background: rgba(255,255,255,0.08);
+	transform: translateY(-1px);
+    color:white;
+}
+
+.custom-link{
+	background: rgba(0,0,0,0.12);
+	color: #fff !important;
+}
+
+/* small active state using attribute selector for NavLink when active class used */
+.nav-link.active, .nav-link[aria-current="page"]{
+	background: rgba(255, 255, 255, 0.3);
+	color: #fff; /* Ensure text is fully white */
+	border-bottom: 2px solid #fff; /* Add a solid white underline */
+}

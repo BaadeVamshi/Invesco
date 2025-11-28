@@ -1,0 +1,64 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+logs/
+*.log
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Temporary files
+.tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Editor & OS artifacts
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Local test data
+data/*.json
+
+# Firebase/Cloud provider files
+.firebase/
+*.firebaserc
+
+# Docker files (optional, uncomment if needed)
+# docker-compose.override.yml
+
+# TypeScript
+*.tsbuildinfo
+
+# Next.js / Vite / caches
+.cache/
+vite.config.js.timestamp-*
+.vite/
+
+# Optional: PM2 process logs
+pids
+*.pid
+*.seed
+*.pid.lock

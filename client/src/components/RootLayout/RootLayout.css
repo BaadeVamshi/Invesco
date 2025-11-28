@@ -1,0 +1,27 @@
+/* Root layout: make page a column so footer sits at the bottom */
+.root-layout{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh; /* allow layout to be at least viewport height and grow beyond */
+}
+
+.content{
+	flex: 1 1 auto; /* take remaining space between nav and footer */
+	display: flex;
+}
+
+/* ensure body has no default margin interfering with full-bleed bars */
+html, body, #root{
+	height: 100%;
+}
+
+body{
+	margin: 0;
+}
+
+.app-footer {
+	padding: 1rem;
+	background-color: #f0f0f0;
+	text-align: center;
+	flex-shrink: 0; /* Prevent footer from shrinking */
+}
